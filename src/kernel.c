@@ -1,8 +1,11 @@
 void kernel_main() {
     char* video_memory = (char*) 0xb8000;
-    video_memory[0] = 'O';
-    video_memory[1] = 0x0F;
-    video_memory[2] = 'K';
-    video_memory[3] = 0x0F;
-    while(1);
+    const char* message = "this is the start of ferOs";
+
+    for(int i = 0; message[i] != '\0'; i++) {
+        video_memory[i * 2] = message[i];
+        video_memory[i * 2 + 1] = 0x0F;
+    }
+
+    while (1);
 }
